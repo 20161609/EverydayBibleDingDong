@@ -1,0 +1,127 @@
+{
+  "project_info": {
+    "project_number": "427315814849",
+    "firebase_url": "https://everydaybible-5d862-default-rtdb.firebaseio.com",
+    "project_id": "everydaybible-5d862",
+    "storage_bucket": "everydaybible-5d862.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:427315814849:android:4d001ca00c132c3e770f40",
+        "android_client_info": {
+          "package_name": "com.android.everydaybible"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "427315814849-smbb2ae6908fchpvnifbvijm4rcn1lf4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.android.everydaybible",
+            "certificate_hash": "80a4c06eef01bbf41463232292500fb8c7a99878"
+          }
+        },
+        {
+          "client_id": "427315814849-7qn6otguvd1rs86f5d0immdbrssivbsc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDuZAbyGyV7UIoEPpvoNmTAtJ_CyuFflk0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "427315814849-7qn6otguvd1rs86f5d0immdbrssivbsc.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "427315814849-nora2plr3f6koiv338aln2k9f2mqmtcc.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "net.Jinhyang.EverydayBible"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:427315814849:android:cc224e2fc946609c770f40",
+        "android_client_info": {
+          "package_name": "com.android.everydaybyble_dingdong"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "427315814849-7qn6otguvd1rs86f5d0immdbrssivbsc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDuZAbyGyV7UIoEPpvoNmTAtJ_CyuFflk0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "427315814849-7qn6otguvd1rs86f5d0immdbrssivbsc.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "427315814849-nora2plr3f6koiv338aln2k9f2mqmtcc.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "net.Jinhyang.EverydayBible"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:427315814849:android:37d585052e26b279770f40",
+        "android_client_info": {
+          "package_name": "com.android.how_to_glide"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "427315814849-7qn6otguvd1rs86f5d0immdbrssivbsc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDuZAbyGyV7UIoEPpvoNmTAtJ_CyuFflk0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "427315814849-7qn6otguvd1rs86f5d0immdbrssivbsc.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "427315814849-nora2plr3f6koiv338aln2k9f2mqmtcc.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "net.Jinhyang.EverydayBible"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
