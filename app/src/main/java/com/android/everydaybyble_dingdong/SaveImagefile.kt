@@ -45,7 +45,6 @@ class SaveImageFile(context: Context) {
 
         ByteArrayOutputStream().apply {
             imageFromView.compress(Bitmap.CompressFormat.JPEG, 100, this)
-//            fileName = "Fuckyou"//UUID.nameUUIDFromBytes(this.toByteArray()).toString().replace("-", "")
         }
 
         val imageFile =  File("${activity.getExternalFilesDir(Environment.DIRECTORY_PICTURES)}/ChatOut/$filename.jpg/")
@@ -71,16 +70,12 @@ class SaveImageFile(context: Context) {
     /* Checks if external storage is available for read and write */
     public fun isExternalStorageWritable(): Boolean {
         val state = Environment.getExternalStorageState()
-        return if (Environment.MEDIA_MOUNTED == state) {
-            true
-        } else false
+        return Environment.MEDIA_MOUNTED == state
     }
 
     /* Checks if external storage is available to at least read */
     public fun isExternalStorageReadable(): Boolean {
         val state = Environment.getExternalStorageState()
-        return if (Environment.MEDIA_MOUNTED == state || Environment.MEDIA_MOUNTED_READ_ONLY == state) {
-            true
-        } else false
+        return Environment.MEDIA_MOUNTED == state || Environment.MEDIA_MOUNTED_READ_ONLY == state
     }
 }

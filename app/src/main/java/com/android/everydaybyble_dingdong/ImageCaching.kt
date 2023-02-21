@@ -12,8 +12,7 @@ import com.google.firebase.storage.ktx.storage
 fun ImageCaching(imageView : ImageView, pictureIndex : Int){
     val storage = Firebase.storage
     val storageRef = storage.reference
-    val islandRef = storageRef.child(arrayFileNames[pictureIndex])
-    val ONE_MEGABYTE: Long = 1024 * 1024
+    val islandRef = storageRef.child(daySelection[pictureIndex].fileName)//arrayFileNames[pictureIndex])
 
     islandRef.downloadUrl.addOnSuccessListener { uri ->
         Glide.with(imageView.context)

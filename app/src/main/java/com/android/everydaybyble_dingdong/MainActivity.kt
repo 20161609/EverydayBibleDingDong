@@ -1,20 +1,21 @@
 package com.android.everydaybyble_dingdong
 
+import DateChangeReceiver
+import android.content.Intent
+import android.content.IntentFilter
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import java.util.*
 
-/*날짜 관련 변수*/
-var Date : Int = getTodayDateInt() // 2023년 1월 25일 수요일 --> 202301253
-var today : Today = Today(202301253)//Date)
-
 var buttonBlocked : Boolean = false //버튼 클릭 가능여부
 var current_picture_index : Int = 6
 var arrayFileNames : Array<String> = arrayOf()
+var daySelection : Array<Today> = arrayOf()
 var dayClicked : Int = -1///클릭된 date번호
 
 class MainActivity : AppCompatActivity() {
@@ -22,10 +23,9 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
         /*0. 사이즈 관련*/
-        val height : Int = resources.displayMetrics.heightPixels
-        val width : Int = resources.displayMetrics.widthPixels
+        val screenHeight : Int = resources.displayMetrics.heightPixels
+        val screenWidth : Int = resources.displayMetrics.widthPixels
 
         /*1. 첫화면 초기화*/
         initToday()
@@ -37,7 +37,7 @@ class MainActivity : AppCompatActivity() {
         val messages : Array<androidx.cardview.widget.CardView> = arrayOf(
             messageSaved, messageNotConnection
         )
-
+        val v_animation : com.airbnb.lottie.LottieAnimationView = findViewById(R.id.v_animation)
         Entire_box.removeView(messageSaved)
         Entire_box.removeView(messageNotConnection)
 
@@ -45,66 +45,57 @@ class MainActivity : AppCompatActivity() {
         val day_list_cover : androidx.cardview.widget.CardView = findViewById(R.id.day_list_cover)
         Entire_box.removeView(day_list_cover)
 
-        //앱정보 drawer
-        val drawerAppInfo : androidx.drawerlayout.widget.DrawerLayout = findViewById(R.id.drawerAppInfo)
-
         /*2. 버튼 기능 실행*/
         val ExcuteButton = excuteButton(
             this,
-            this,
             day_list_cover,
             messages,
-            drawerAppInfo,
-            height, width
+            screenHeight,
+            v_animation
         )
         val button_id : Array<Int> = arrayOf(R.id.button0, R.id.button1, R.id.button2, R.id.button3)
-        for(i in 0..3) {
-            val button: Button = findViewById<Button?>(button_id[i]).apply {
-                setOnClickListener() { ExcuteButton.Run(i) }
+        for(click in 0..3) {
+            val button: Button = findViewById<Button?>(button_id[click]).apply {
+                setOnClickListener() {
+                    try{
+                        ExcuteButton.run(click)
+                    }
+                    catch(e:Exception){
+                        //print message "에러가 발생하였습니다."
+                    }
+                }
             }
         }
 
         /*3. 날짜 갱신 (24시 정각)*/
+        try{
+            val dateChangeReceiver = DateChangeReceiver()
+            val intentFilter = IntentFilter(Intent.ACTION_DATE_CHANGED)
+            this.registerReceiver(dateChangeReceiver, intentFilter)
+        }
+        catch (e : Exception){
+            Log.e("G같은","co딩")
+        }
 
-    }
+        val location = IntArray(2)
+        val card_box : androidx.cardview.widget.CardView = findViewById(R.id.card_box)
+        card_box.getLocationOnScreen(location)
+        Log.e(location[0].toString(), location[1].toString())
 
-    private fun getMidnight(): Long {
-        val calendar = Calendar.getInstance()
-        calendar.set(Calendar.HOUR_OF_DAY, 0)
-        calendar.set(Calendar.MINUTE, 0)
-        calendar.set(Calendar.SECOND, 0)
-        calendar.set(Calendar.MILLISECOND, 0)
-        calendar.add(Calendar.DATE, 1)
-        return calendar.timeInMillis
+        Log.e("섹","스1")
     }
 
     private fun initToday(){
         /*1. 날짜 갱신*/
-        Date = getTodayDateInt()//Date = 202302131
-        today = Today(Date)
         dayClicked = -1
         current_picture_index = 6
-        for(i in 6 downTo 0){
-            var valueDay = today.valueDay - i
-            var valueMonth = today.valueMonth
-            var valueYear = today.valueYear
+        
+        for(ago in 6 downTo 0)//7일 day list작성
+            daySelection = daySelection.plus(Today(ago))
 
-            if(valueDay < 1){
-                valueMonth -= 1
-                if(valueMonth < 1){
-                    valueMonth = 12
-                    valueYear -= 1
-                }
-
-                valueDay = MonthSize(valueYear, valueMonth) + valueDay
-            }
-
-            arrayFileNames = arrayFileNames.plus((valueYear*10000 + valueMonth*100 + valueDay).toString() + ".jpeg")
-        }
-
-        /*2. 날짜 출력 텍스트 갱신*/
+        /*2. 오늘의 날짜 출력*/
         val text_date : TextView = findViewById(R.id.text_date)
-        text_date.text = today.text_date
+        text_date.text = daySelection[6].text_date//dateText(arrayFileNames[6].substring(0,8).toInt(), dayOfWeek)
 
         /*3. 사진 갱신*/
         ImageCaching(findViewById(R.id.Current_picture), 6)

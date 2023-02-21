@@ -23,7 +23,6 @@
                 android:id="@+id/Entire_box"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
                 android:orientation="vertical"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -36,7 +35,7 @@
                     android:layout_height="match_parent"
                     android:text="0000년 00월 00일 0요일"
                     android:textColor="@color/black"
-                    android:fontFamily="@font/leferi_base_regular" >
+                    android:fontFamily="@font/arita4_0_m" >
                 </TextView>
 
                 <TextView
@@ -44,10 +43,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginTop="7dp"
-                    android:text="딩동 말씀13"
+                    android:text="딩동 말씀1"
                     android:textColor="@color/black"
                     android:textSize="30dp"
-                    android:fontFamily="@font/leferi_base_bold">
+                    android:fontFamily="@font/arita4_0_b">
                 </TextView>
 
                 <androidx.cardview.widget.CardView
@@ -55,6 +54,7 @@
                     android:layout_height="340dp"
                     android:layout_marginTop="10dp"
                     android:background="@color/white"
+                    style="?android:attr/borderlessButtonStyle"
                     app:cardCornerRadius="15dp">
 
                     <ImageView
@@ -79,7 +79,7 @@
                         android:layout_height="103dp"
                         android:background="#EEEEEE"
                         app:cardCornerRadius="15dp"
-                        app:cardElevation="3dp">
+                        app:cardElevation="5dp">
 
                         <LinearLayout
                             android:id="@+id/button_box"
@@ -101,7 +101,7 @@
                                 android:background="#EEEEEE"
                                 android:drawableTop="@android:drawable/ic_menu_week"
                                 android:text="어제말씀"
-                                android:fontFamily="@font/leferi_point_white"
+                                android:fontFamily="@font/arita4_0_m"
                                 android:textColor="@color/black"
                                 android:textSize="13dp"></androidx.appcompat.widget.AppCompatButton>
 
@@ -116,7 +116,7 @@
                                 android:drawableTop="@android:drawable/ic_menu_gallery"
                                 android:text="저장"
                                 android:textColor="@color/black"
-                                android:fontFamily="@font/leferi_point_white"
+                                android:fontFamily="@font/arita4_0_m"
                                 android:textSize="13dp"></androidx.appcompat.widget.AppCompatButton>
 
                             <androidx.appcompat.widget.AppCompatButton
@@ -129,7 +129,7 @@
                                 android:background="#EEEEEE"
                                 android:drawableTop="@android:drawable/ic_menu_share"
                                 android:text="공유"
-                                android:fontFamily="@font/leferi_point_white"
+                                android:fontFamily="@font/arita4_0_m"
                                 android:textColor="@color/black"
                                 android:textSize="13dp"></androidx.appcompat.widget.AppCompatButton>
 
@@ -143,7 +143,7 @@
                                 android:background="#EEEEEE"
                                 android:drawableTop="@android:drawable/ic_menu_info_details"
                                 android:text="앱정보"
-                                android:fontFamily="@font/leferi_point_white"
+                                android:fontFamily="@font/arita4_0_m"
                                 android:textColor="@color/black"
                                 android:textSize="13dp"></androidx.appcompat.widget.AppCompatButton>
                         </LinearLayout>
@@ -179,14 +179,13 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="34dp">
                                 <TextView
-                                    android:textStyle="bold"
                                     android:textColor="@color/black"
                                     android:layout_width="295dp"
                                     android:layout_height="26dp"
                                     android:textSize= "14dp"
                                     android:layout_marginTop="10dp"
                                     android:layout_marginStart="7dp"
-                                    android:fontFamily="@font/leferi_base_bold"
+                                    android:fontFamily="@font/arita4_0_m"
                                     android:text="최근 일주일 말씀 입니다.">
                                 </TextView>
 
@@ -200,15 +199,16 @@
                                 </androidx.appcompat.widget.AppCompatButton>
                             </LinearLayout>
                             <TextView
+                                android:id="@+id/textMonth"
                                 android:layout_marginTop="7dp"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:fontFamily="@font/leferi_point_white"
+                                android:fontFamily="@font/arita4_0_l"
                                 android:layout_marginStart="10dp"
                                 android:textStyle="bold"
                                 android:textSize="10dp"
                                 android:textColor="@color/black"
-                                android:text="00월">
+                                android:text="2월">
                             </TextView>
 
                             <LinearLayout
@@ -222,8 +222,8 @@
                                     android:layout_width="30dp"
                                     android:layout_height="30dp"
                                     android:layout_marginStart="11dp"
-                                    android:background="@drawable/shape_for_circle_button_clicked"
-                                    android:fontFamily="@font/leferi_base_regular"
+                                    android:background="@drawable/shape_for_circle_button"
+                                    android:fontFamily="@font/arita4_0_l"
                                     android:text="00"
                                     android:textSize="16dp"></androidx.appcompat.widget.AppCompatButton>
 
@@ -234,7 +234,7 @@
                                     android:layout_height="30dp"
                                     android:layout_marginStart="18dp"
                                     android:background="@drawable/shape_for_circle_button"
-                                    android:fontFamily="@font/leferi_base_regular"
+                                    android:fontFamily="@font/arita4_0_l"
                                     android:text="00"
                                     android:textSize="16dp"></androidx.appcompat.widget.AppCompatButton>
 
@@ -245,7 +245,7 @@
                                     android:layout_height="30dp"
                                     android:layout_marginStart="18dp"
                                     android:background="@drawable/shape_for_circle_button"
-                                    android:fontFamily="@font/leferi_base_regular"
+                                    android:fontFamily="@font/arita4_0_l"
                                     android:text="00"
                                     android:textSize="16dp"></androidx.appcompat.widget.AppCompatButton>
 
@@ -256,7 +256,7 @@
                                     android:layout_height="30dp"
                                     android:layout_marginStart="18dp"
                                     android:background="@drawable/shape_for_circle_button"
-                                    android:fontFamily="@font/leferi_base_regular"
+                                    android:fontFamily="@font/arita4_0_l"
                                     android:text="00"
                                     android:textSize="16dp"></androidx.appcompat.widget.AppCompatButton>
 
@@ -267,7 +267,7 @@
                                     android:layout_height="30dp"
                                     android:layout_marginStart="18dp"
                                     android:background="@drawable/shape_for_circle_button"
-                                    android:fontFamily="@font/leferi_base_regular"
+                                    android:fontFamily="@font/arita4_0_l"
                                     android:text="00"
                                     android:textSize="16dp"></androidx.appcompat.widget.AppCompatButton>
 
@@ -278,7 +278,7 @@
                                     android:layout_height="30dp"
                                     android:layout_marginStart="18dp"
                                     android:background="@drawable/shape_for_circle_button"
-                                    android:fontFamily="@font/leferi_base_regular"
+                                    android:fontFamily="@font/arita4_0_l"
                                     android:text="00"
                                     android:textSize="16dp"></androidx.appcompat.widget.AppCompatButton>
 
@@ -289,7 +289,7 @@
                                     android:layout_height="30dp"
                                     android:layout_marginStart="18dp"
                                     android:background="@drawable/shape_for_circle_button"
-                                    android:fontFamily="@font/leferi_base_regular"
+                                    android:fontFamily="@font/arita4_0_l"
                                     android:text="00"
                                     android:textSize="16dp"></androidx.appcompat.widget.AppCompatButton>
                             </LinearLayout>
@@ -307,7 +307,7 @@
                     <LinearLayout
                         android:layout_width="340dp"
                         android:layout_height="103dp"
-                        android:background="@color/white"
+                        android:background="#FFFFFF"
                         android:gravity="center_vertical"
                         android:orientation="horizontal"
                         android:paddingRight="10dp"
@@ -317,20 +317,20 @@
                             android:id="@+id/v_animation"
                             android:layout_width="30dp"
                             android:layout_height="30dp"
-                            android:layout_marginLeft="41dp"
-                            app:lottie_autoPlay="true"
-                            app:lottie_loop="true"
-                            app:lottie_rawRes="@raw/check_icon"></com.airbnb.lottie.LottieAnimationView>
+                            android:layout_marginStart="41dp"
+                            app:lottie_autoPlay="false"
+                            app:lottie_loop="false"
+                            app:lottie_rawRes="@raw/check_icon" />
 
                         <TextView
                             android:id="@+id/success_message_0_2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="17dp"
+                            android:layout_marginStart="17dp"
                             android:text="저장되었습니다."
-                            android:fontFamily="@font/leferi_base_regular"
+                            android:fontFamily="@font/arita4_0_m"
                             android:textColor="@color/black"
-                            android:textSize="25dp"></TextView>
+                            android:textSize="25dp" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
@@ -338,13 +338,13 @@
                     android:id="@+id/messageNotConnection"
                     android:layout_width="340dp"
                     android:layout_height="wrap_content"
-                    android:background="#FFFFFF"
+                    android:background="#BCDEFA"
                     app:cardCornerRadius="15dp">
 
                     <LinearLayout
                         android:layout_width="340dp"
                         android:layout_height="103dp"
-                        android:background="#FFFFFF"
+                        android:background="#BCDEFA"
                         android:gravity="center"
                         android:orientation="horizontal"
                         android:paddingRight="10dp"
@@ -353,10 +353,10 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/leferi_point_white"
+                            android:fontFamily="@font/arita4_0_m"
                             android:text="네트워크 연결을 확인해주세요"
                             android:textColor="@color/black"
-                            android:textSize="21dp"></TextView>
+                            android:textSize="21dp" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
@@ -365,9 +365,10 @@
         </LinearLayout>
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/fuckyou"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_gravity="left"
+            android:layout_gravity="start"
             android:background="#EEEEEE"
             app:cardCornerRadius="15dp">
 
@@ -390,8 +391,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="#EEEEEE"
+                        android:fontFamily="@font/arita4_0_m"
                         android:paddingLeft="4dp"
-                        android:fontFamily="@font/leferi_point_white"
                         android:text="앱 정보"></TextView>
 
                     <LinearLayout
@@ -404,10 +405,10 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:background="#FFFFFF"
+                            android:fontFamily="@font/arita4_0_m"
                             android:paddingLeft="4dp"
                             android:paddingTop="4dp"
                             android:text="말씀카드는 언제 업데이트되나요?"
-                            android:fontFamily="@font/leferi_point_white"
                             android:textColor="@color/black"
                             android:textStyle="bold"></TextView>
 
@@ -415,11 +416,11 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:background="#FFFFFF"
+                            android:fontFamily="@font/arita4_0_l"
                             android:paddingLeft="4dp"
                             android:paddingTop="4dp"
                             android:paddingBottom="4dp"
                             android:text="한국 시간을 기준으로 자정에 업데이트 됩니다."
-                            android:fontFamily="@font/leferi_point_white"
                             android:textColor="@color/black"></TextView>
                     </LinearLayout>
 
@@ -433,10 +434,10 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:background="#FFFFFF"
+                            android:fontFamily="@font/arita4_0_m"
                             android:paddingLeft="4dp"
                             android:paddingTop="4dp"
                             android:text="궁금한 사항은 어디로 문의하나요?"
-                            android:fontFamily="@font/leferi_point_white"
                             android:textColor="@color/black"
                             android:textStyle="bold"></TextView>
 
@@ -444,11 +445,11 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:background="#FFFFFF"
+                            android:fontFamily="@font/arita4_0_l"
                             android:paddingLeft="4dp"
                             android:paddingTop="4dp"
                             android:paddingBottom="4dp"
                             android:text="jinhyang.programmer@gmail.com로 메일 부탁드립니다."
-                            android:fontFamily="@font/leferi_point_white"
                             android:textColor="@color/black"></TextView>
                     </LinearLayout>
 
@@ -462,10 +463,10 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:background="#FFFFFF"
+                            android:fontFamily="@font/arita4_0_m"
                             android:paddingLeft="4dp"
                             android:paddingTop="4dp"
                             android:text="앱 내 저작권 표시"
-                            android:fontFamily="@font/leferi_point_white"
                             android:textColor="@color/black"
                             android:textStyle="bold"></TextView>
 
@@ -473,11 +474,11 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:background="#FFFFFF"
+                            android:fontFamily="@font/arita4_0_l"
                             android:paddingLeft="4dp"
                             android:paddingTop="4dp"
                             android:paddingBottom="4dp"
                             android:text="(주) 아모레퍼시픽에서 제공하는 '아리따돋움'을 사용하였습니다."
-                            android:fontFamily="@font/leferi_point_white"
                             android:textColor="@color/black"></TextView>
                     </LinearLayout>
 
@@ -491,10 +492,10 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:background="#FFFFFF"
+                            android:fontFamily="@font/arita4_0_m"
                             android:paddingLeft="4dp"
                             android:paddingTop="4dp"
                             android:text="앱 버전"
-                            android:fontFamily="@font/leferi_point_white"
                             android:textColor="@color/black"
                             android:textStyle="bold"></TextView>
 
@@ -502,11 +503,11 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:background="#FFFFFF"
+                            android:fontFamily="@font/arita4_0_l"
                             android:paddingLeft="4dp"
                             android:paddingTop="4dp"
                             android:paddingBottom="4dp"
                             android:text="1.5.4"
-                            android:fontFamily="@font/leferi_point_white"
                             android:textColor="@color/black"></TextView>
                     </LinearLayout>
 
