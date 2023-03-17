@@ -15,11 +15,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.EverydayByble_DingDong">
         <activity
-            android:name=".TestSizing"
+            android:name=".set_Viewrers"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
+        </activity>
+        <activity
+            android:name=".SplashActivity"
+            android:theme="@style/SplashTheme"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+
         </activity>
         <activity
             android:name=".ToastViews"
@@ -33,4 +43,5 @@
             </intent-filter>
         </activity>
     </application>
+
 </manifest>

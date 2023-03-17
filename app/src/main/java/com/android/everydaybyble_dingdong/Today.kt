@@ -1,5 +1,7 @@
 package com.android.everydaybyble_dingdong
 
+import android.util.Log
+import android.widget.Button
 import java.util.*
 
 class Today(ago : Int){
@@ -9,8 +11,8 @@ class Today(ago : Int){
 
     public val dayOfWeek : Int
 
-    public var text_date : String
-    public var fileName : String
+    public lateinit var text_date : String
+    public lateinit var fileName : String
 
     init {
         val calendar = Calendar.getInstance()
@@ -19,6 +21,8 @@ class Today(ago : Int){
         year = calendar.get(Calendar.YEAR);
         month = calendar.get(Calendar.MONTH) + 1
         day = calendar.get(Calendar.DAY_OF_MONTH)
+        val a = calendar.get(Calendar.HOUR_OF_DAY)
+        Log.e(a.toString(), "지금시간")
         print(year)
         print(month)
         println(day)

@@ -1,14 +1,18 @@
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import android.content.IntentFilter
 import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
+import com.android.everydaybyble_dingdong.*
 
-class DateChangeReceiver : BroadcastReceiver() {
+class DateChangeReceiver(
+    private val mainActivity: AppCompatActivity, private val mainContext: Context
+    ) : BroadcastReceiver() {
+
     override fun onReceive(context: Context, intent: Intent) {
         if (intent.action == Intent.ACTION_DATE_CHANGED) {
-            // Update your variables here
-            Log.e("열두시가 지나면","브라보콘")
+            Log.e("가자","ㅆ")
+            initToday(mainActivity,mainContext)
         }
     }
 }

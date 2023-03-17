@@ -9,21 +9,27 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 
-fun ImageCaching(imageView : ImageView, pictureIndex : Int){
+fun imageCaching(imageView : ImageView, pictureIndex : Int){
     val storage = Firebase.storage
     val storageRef = storage.reference
-    val islandRef = storageRef.child(daySelection[pictureIndex].fileName)//arrayFileNames[pictureIndex])
+    val islandRef = storageRef.child(daySelection[pictureIndex].fileName)
 
+    imageBox?.addView(o_animation)
     islandRef.downloadUrl.addOnSuccessListener { uri ->
         Glide.with(imageView.context)
             .load(uri)
             .diskCacheStrategy(DiskCacheStrategy.NONE)
             .centerCrop()
-            .into(imageView)
+            .into(imageView).run {
+                imageBox?.removeView(o_animation)
+            }
+        Log.e("getBytes","Success")
     }.addOnFailureListener {
         // Handle any errors
+        imageBox?.removeView(o_animation)
         Log.e("getBytes","failure")
     }
+
 }
 
 fun isNetworkConnected(context: Context): Boolean {
