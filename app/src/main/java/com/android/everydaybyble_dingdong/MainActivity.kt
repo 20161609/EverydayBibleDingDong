@@ -28,15 +28,15 @@ var set_viewers : RelativeLayout? = null
 
 var ToastMessage: Toast? = null // 공통된 toastMessage
 
-var messageSaved : androidx.cardview.widget.CardView? = null
+var messageSaved : androidx.cardview.widget.CardView?? = null
 var v_animation : com.airbnb.lottie.LottieAnimationView? = null
 var o_animation : com.airbnb.lottie.LottieAnimationView? = null
 
 var messageNotConnection : androidx.cardview.widget.CardView? = null
 
-var day_list_cover : androidx.cardview.widget.CardView? = null
+var day_list_cover : LinearLayout? = null
 var back : Button? = null
-var Entire_box : RelativeLayout? = null
+var boxView : RelativeLayout? = null
 var imageBox : RelativeLayout? = null
 
 class MainActivity : AppCompatActivity() {
@@ -50,22 +50,20 @@ class MainActivity : AppCompatActivity() {
         val screenHeight : Int = resources.displayMetrics.heightPixels
         val screenWidth : Int = resources.displayMetrics.widthPixels
 
-        Entire_box = findViewById(R.id.Entire_box)
         activity_sv = LayoutInflater.from(this).inflate(R.layout.activity_set_viewrers,null)
         set_viewers = activity_sv?.findViewById(R.id.set_viewers)
         messageSaved = activity_sv?.findViewById(R.id.messageSaved)
         messageNotConnection = activity_sv?.findViewById(R.id.messageNotConnection)
+        boxView = findViewById(R.id.boxView)
 
         v_animation = activity_sv?.findViewById(R.id.v_animation1)
-        val textRemove : TextView = findViewById(R.id.textRemove)
-        imageBox = findViewById(R.id.imageBox)
-        imageBox?.removeView(textRemove)
         o_animation = findViewById(R.id.o_animation)
         imageBox?.removeView(o_animation)
 
         errorText = activity_sv?.findViewById(R.id.errorText)
-        day_list_cover = activity_sv?.findViewById(R.id.day_list_cover)
+        day_list_cover = activity_sv?.findViewById(R.id.day_list)
         back = activity_sv?.findViewById(R.id.button_back)
+
         for(b_id in arrayOf(R.id.day0,R.id.day1,R.id.day2,R.id.day3,R.id.day4,R.id.day5,R.id.day6))
             dayButtons=dayButtons.plus(activity_sv?.findViewById(b_id))
 
@@ -86,16 +84,9 @@ class MainActivity : AppCompatActivity() {
         }
 
         /*3. 날짜 갱신 (24시 정각)*/
-
-
-        try{
-            val dateChangeReceiver = DateChangeReceiver(this,this)
-            val intentFilter = IntentFilter(Intent.ACTION_DATE_CHANGED)
-            this.registerReceiver(dateChangeReceiver, intentFilter)
-        }
-        catch (e : Exception){
-            Log.e("J같은","co딩")
-        }
+        val dateChangeReceiver = DateChangeReceiver(this,this)
+        val intentFilter = IntentFilter(Intent.ACTION_DATE_CHANGED)
+        this.registerReceiver(dateChangeReceiver, intentFilter)
     }
 
     override fun onPause() {

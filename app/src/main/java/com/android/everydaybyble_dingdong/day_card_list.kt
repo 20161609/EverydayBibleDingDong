@@ -23,12 +23,10 @@ public fun dayCardList(activity : Activity, context : Context) {
     for (i in 0..6){
         /*a. user가 클릭한 버튼 표식*/
         val button : AppCompatButton? = dayButtons[i]
-        button?.text = (daySelection[i].day + 100).toString().substring(1, 3)
+//        button?.text = (daySelection[i].day + 100).toString().substring(1, 3)
+        dayButtons[i]?.text = (daySelection[i].day + 100).toString().substring(1, 3)
+        if(i == dayClicked)uiClicked(button)//버튼 UI갱신
 
-        Log.e((daySelection[i].day + 100).toString().substring(1, 3), "buttontext")
-
-        if(i == dayClicked)//버튼 UI갱신
-            uiClicked(button)
 
         /*b. 버튼 기능 수행.*/
         button?.setOnClickListener(){

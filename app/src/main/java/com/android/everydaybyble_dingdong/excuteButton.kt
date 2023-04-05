@@ -2,31 +2,15 @@ package com.android.everydaybyble_dingdong
 
 import android.app.Activity
 import android.content.Context
-import android.content.Intent
-import android.graphics.Bitmap
-import android.graphics.Color
-import android.graphics.drawable.BitmapDrawable
-import android.net.Uri
 import android.os.Build
-import android.os.CountDownTimer
 import android.os.Handler
-import android.provider.MediaStore
 import android.util.Log
 import android.view.Gravity
-import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.*
-import androidx.annotation.RequiresApi
-import androidx.cardview.widget.CardView
-import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.view.GravityCompat
-import androidx.core.view.marginBottom
 import androidx.core.view.marginTop
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
-import com.google.firebase.ktx.Firebase
-import com.google.firebase.storage.ktx.storage
-import java.io.ByteArrayOutputStream
 
 class excuteButton(
     private val activity : Activity,
@@ -35,8 +19,7 @@ class excuteButton(
 ) {
     /*-- Variables --*/
     /*Run Button*/
-    private val card_box : androidx.cardview.widget.CardView = activity.findViewById<CardView?>(R.id.card_box)
-    private val card_box_cover : androidx.cardview.widget.CardView = activity.findViewById(R.id.card_box_cover)
+    private val card_box : LinearLayout = activity.findViewById(R.id.button_box)
     private val dialog : BottomSheetDialog = BottomSheetDialog(context, R.style.BottomSheetDialogTheme)
 
     /*Toast 출력 좌표*/
@@ -55,7 +38,7 @@ class excuteButton(
 
         Log.e(day_list_cover?.marginTop.toString(), "day_list_cover")
 
-        val layoutParams = card_box_cover.layoutParams as ViewGroup.MarginLayoutParams
+        val layoutParams = card_box.layoutParams as ViewGroup.MarginLayoutParams
         val marginBottom = layoutParams.bottomMargin
         Log.e("hojun", marginBottom.toString())
         ToastMessage = Toast(activity).apply {
@@ -64,16 +47,15 @@ class excuteButton(
             setGravity(Gravity.BOTTOM or Gravity.START, toastX, toastY)
         }
 
-        if(buttonBlocked || dialog.isShowing) return
-        Log.e("Clicked", arrayOf("어제말씀", "저장", "공유", "앱정보")[Clicked])
         try{
+            if(buttonBlocked || dialog.isShowing) return
+            Log.e("Clicked", arrayOf("어제말씀", "저장", "공유", "앱정보")[Clicked])
             when(Clicked){
                 0 -> ButtonSelectingImage()//어제말씀
                 1 -> ButtonSavingImage1()//저장
                 2 -> ButtonSharingImage()//공유
                 3 -> ButtonAppInfo()//앱정보
             }
-            Log.e("FUCKOY:","FESK")
         }
         catch (e : Exception){
             ToastMessage?.view = messageNotConnection
@@ -87,14 +69,14 @@ class excuteButton(
     /*button0000 : 어제 말씀*/
     private fun ButtonSelectingImage(){
         /*1, 버튼박스 갱신*/
-        Entire_box?.removeView(card_box_cover)
-        Entire_box?.addView(day_list_cover)
+        boxView?.removeView(card_box)
+        boxView?.addView(day_list_cover)
 
         /*2. 뒤로 가기*/
         back?.setOnClickListener(){
             Log.e("Go","Back")
-            Entire_box?.removeView(day_list_cover)
-            Entire_box?.addView(card_box_cover)
+            boxView?.removeView(day_list_cover)
+            boxView?.addView(card_box)
         }
     }
 
@@ -108,7 +90,7 @@ class excuteButton(
             //a.1. 저장
             when (androidVersion) {
                 Build.VERSION_CODES.Q// Android version is 10
-                -> save.saveImage_v10(imageView, activity)
+                -> save.saveImage_v10(imageView, activity)//
                 Build.VERSION_CODES.R// Android version is 11
                 -> save.saveImage_v11(imageView, activity, "filename")
                 else // 9밑으론 쓰지 마셈ㅗ
@@ -140,7 +122,7 @@ class excuteButton(
     private fun ButtonSharingImage(){
         val imageView: ImageView = activity.findViewById(R.id.Current_picture)
         when(androidVersion){
-            Build.VERSION_CODES.Q -> shareImage_v10(imageView, activity)
+            Build.VERSION_CODES.Q -> shareImage_v11(imageView, activity)
             Build.VERSION_CODES.R -> shareImage_v11(imageView, activity)
         }
     }
@@ -149,7 +131,7 @@ class excuteButton(
     private fun ButtonAppInfo(){
         val dialogView = activity.layoutInflater.inflate(R.layout.app_info, null)
         dialog.setContentView(dialogView)
-        dialog.behavior.state=BottomSheetBehavior.STATE_EXPANDED
+        dialog.behavior.state=BottomSheetBehavior.STATE_COLLAPSED
         dialog.show()
     }
 }

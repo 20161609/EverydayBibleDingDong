@@ -23,18 +23,22 @@ import java.util.*
 
 
 class SaveImageFile(context: Context) {
-    @RequiresApi(Build.VERSION_CODES.O)
-    val now: LocalDateTime = LocalDateTime.now()
-    @RequiresApi(Build.VERSION_CODES.O)
-    private val filename : String = (now.year.toInt() * 100000000000000 +
-                            now.monthValue.toInt() * 10000000000 +
-                            now.dayOfMonth.toInt() * 100000000 +
-                            now.hour.toInt() * 1000000 +
-                            now.minute.toInt() * 10000 +
-                            now.second.toInt() * 100 +
-                            now.nano.toInt()
-                            ).toString() + "dingdong"
+    public var filename : String
+    init{
+        val calendar = Calendar.getInstance()
+        val year = calendar.get(Calendar.YEAR)
+        val month = calendar.get(Calendar.MONTH) + 1
+        val day = calendar.get(Calendar.DAY_OF_MONTH)
+        val todayDate = year*10000 + month*100 + day
 
+        val h = calendar.get(Calendar.HOUR_OF_DAY)
+        val m = calendar.get(Calendar.MINUTE)
+        val s = calendar.get(Calendar.SECOND)
+        val totalSecond = m*60 + s
+        filename=todayDate.toString() +
+                (calendar.get(Calendar.MILLISECOND)+totalSecond).toString() +
+                "_dingdong"
+    }
     private fun getBitmapFromView(view: ImageView): Bitmap {
         return Bitmap.createBitmap(view.width, view.height,Bitmap.Config.ARGB_8888).apply {
             Canvas(this).apply {
@@ -44,11 +48,11 @@ class SaveImageFile(context: Context) {
     }
 
     fun saveImage_v10(itemImage: ImageView, activity: Activity) {
+        Log.e("saveImage_v10", "Excuted")
         val imageFromView = getBitmapFromView(itemImage)
-
         val resolver = activity.contentResolver
         val contentValues = ContentValues().apply {
-            put(MediaStore.Images.Media.DISPLAY_NAME, "filename")
+            put(MediaStore.Images.Media.DISPLAY_NAME, filename)
             put(MediaStore.Images.Media.MIME_TYPE, "image/jpeg")
         }
 
@@ -94,6 +98,7 @@ class SaveImageFile(context: Context) {
 
 
     public fun saveImage_v11(itemImage: ImageView, activity: Activity, filename : String) {
+        Log.e("saveImage_v11", "Excuted")
         val imageFromView = getBitmapFromView(itemImage)
 
         ByteArrayOutputStream().apply {

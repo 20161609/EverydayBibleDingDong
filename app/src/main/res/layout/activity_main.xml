@@ -6,167 +6,152 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <RelativeLayout
-        android:id="@+id/Entire_box"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <LinearLayout
+        android:gravity="center"
+        android:orientation="vertical">
+        <RelativeLayout
+            android:background="@color/white"
+            android:layout_weight="1"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="60dp"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/text_date"
-                android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:id="@+id/Entire_box"
+                android:layout_centerInParent="true"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/arita4_0_m"
-                android:text="0000년 00월 00일 0요일"
-                android:textColor="@color/black" />
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/Title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:fontFamily="@font/arita4_0_b"
-                android:text="딩동 말씀2"
-                android:textColor="@color/black"
-                android:textSize="30dp" />
-
-            <androidx.cardview.widget.CardView
-                style="?android:attr/borderlessButtonStyle"
-                android:layout_width="340dp"
-                android:layout_height="340dp"
-                android:layout_marginTop="15dp"
-                app:cardCornerRadius="15dp">
-
-                <RelativeLayout
-                    android:id="@+id/imageBox"
+                <TextView
+                    android:id="@+id/text_date"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/arita4_0_m"
+                    android:text="0000년 00월 00일 0요일"
+                    android:textColor="@color/black" />
 
-                    <ImageView
-                        android:id="@+id/Current_picture"
-                        android:layout_width="340dp"
-                        android:layout_height="340dp"
-                        android:layout_centerInParent="true" />
-                    <TextView
-                        android:id="@+id/textRemove"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="20dp"
-                        android:text="fuckyou"
-                        android:layout_centerInParent="true"/>
-                    <com.airbnb.lottie.LottieAnimationView
-                        android:id="@+id/o_animation"
-                        android:layout_centerInParent="true"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        app:lottie_rawRes="@raw/loading_animation"
-                        app:lottie_autoPlay="true"
-                        app:lottie_loop="true"/>
-                </RelativeLayout>
-            </androidx.cardview.widget.CardView>
-        </LinearLayout>
+                <TextView
+                    android:id="@+id/Title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/arita4_0_b"
+                    android:text="딩동 말씀"
+                    android:textColor="@color/black"
+                    android:textSize="30dp" />
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/card_box_cover"
-            android:layout_width="350dp"
-            android:layout_height="120dp"
-            android:layout_alignParentBottom="true"
-            android:layout_gravity="bottom"
-            android:layout_marginBottom="20dp"
-            app:cardCornerRadius="15dp"
-            app:cardElevation="0dp">
+                <androidx.cardview.widget.CardView
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="332.5dp"
+                    android:layout_height="332.5dp"
+                    android:layout_marginTop="15dp"
+                    app:cardCornerRadius="15dp">
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/card_box"
+                    <RelativeLayout
+                        android:id="@+id/imageBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+<!--
+                        app:lottie_rawRes="@raw/lottie_loading"
+-->
+                        <com.airbnb.lottie.LottieAnimationView
+                            android:id="@+id/o_animation"
+                            android:layout_centerInParent="true"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            app:lottie_autoPlay="true"
+                            app:lottie_loop="true"/>
+
+                        <ImageView
+                            android:id="@+id/Current_picture"
+                            android:layout_width="332.5dp"
+                            android:layout_height="332.5dp"
+                            android:layout_centerInParent="true" />
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/boxView"
+            android:layout_weight="4"
+            android:background="@color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:id="@+id/button_box"
+                android:layout_alignParentBottom="true"
                 android:layout_width="340dp"
-                android:layout_height="103dp"
-                app:cardCornerRadius="15dp"
-                app:cardElevation="12dp">
+                android:layout_height="113dp"
+                android:layout_marginBottom="30dp"
+                android:background="@drawable/custom_shadow2"
+                android:gravity="center"
+                android:orientation="horizontal">
 
-                <LinearLayout
-                    android:id="@+id/button_box"
-                    android:layout_width="340dp"
-                    android:layout_height="103dp"
-                    android:background="#EEEEEE"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    android:paddingRight="10dp"
-                    android:paddingBottom="10dp">
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/button0"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="65dp"
+                    android:layout_height="65dp"
+                    android:layout_marginTop="7dp"
+                    android:background="@android:color/transparent"
+                    android:drawableTop="@android:drawable/ic_menu_week"
+                    android:fontFamily="@font/arita4_0_m"
+                    android:text="어제말씀"
+                    android:textColor="@color/black"
+                    android:textSize="13dp"
+                    android:textStyle="bold"/>
 
-                    <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/button0"
-                        style="?android:attr/borderlessButtonStyle"
-                        android:layout_width="65dp"
-                        android:layout_height="65dp"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginTop="7dp"
-                        android:background="#EEEEEE"
-                        android:drawableTop="@android:drawable/ic_menu_week"
-                        android:fontFamily="@font/arita4_0_m"
-                        android:text="어제말씀"
-                        android:textColor="@color/black"
-                        android:textSize="13dp"
-                        android:textStyle="bold"></androidx.appcompat.widget.AppCompatButton>
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/button1"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="65dp"
+                    android:layout_height="65dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="7dp"
+                    android:background="@android:color/transparent"
+                    android:drawableTop="@android:drawable/ic_menu_gallery"
+                    android:fontFamily="@font/arita4_0_m"
+                    android:text="저장"
+                    android:textColor="@color/black"
+                    android:textSize="13dp"
+                    android:textStyle="bold" />
 
-                    <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/button1"
-                        style="?android:attr/borderlessButtonStyle"
-                        android:layout_width="65dp"
-                        android:layout_height="65dp"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginTop="7dp"
-                        android:background="#EEEEEE"
-                        android:drawableTop="@android:drawable/ic_menu_gallery"
-                        android:fontFamily="@font/arita4_0_m"
-                        android:text="저장"
-                        android:textColor="@color/black"
-                        android:textSize="13dp"
-                        android:textStyle="bold" />
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/button2"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="65dp"
+                    android:layout_height="65dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="7dp"
+                    android:background="@android:color/transparent"
+                    android:drawableTop="@android:drawable/ic_menu_share"
+                    android:fontFamily="@font/arita4_0_m"
+                    android:text="공유"
+                    android:textColor="@color/black"
+                    android:textSize="13dp"
+                    android:textStyle="bold" />
 
-                    <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/button2"
-                        style="?android:attr/borderlessButtonStyle"
-                        android:layout_width="65dp"
-                        android:layout_height="65dp"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginTop="7dp"
-                        android:background="#EEEEEE"
-                        android:drawableTop="@android:drawable/ic_menu_share"
-                        android:fontFamily="@font/arita4_0_m"
-                        android:text="공유"
-                        android:textColor="@color/black"
-                        android:textSize="13dp"
-                        android:textStyle="bold" />
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/button3"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="65dp"
+                    android:layout_height="65dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="7dp"
+                    android:background="@android:color/transparent"
+                    android:drawableTop="@android:drawable/ic_menu_info_details"
+                    android:fontFamily="@font/arita4_0_m"
+                    android:text="앱정보"
+                    android:textColor="@color/black"
+                    android:textSize="13dp"
+                    android:textStyle="bold" />
+            </LinearLayout>
 
-                    <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/button3"
-                        style="?android:attr/borderlessButtonStyle"
-                        android:layout_width="65dp"
-                        android:layout_height="65dp"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginTop="7dp"
-                        android:background="#EEEEEE"
-                        android:drawableTop="@android:drawable/ic_menu_info_details"
-                        android:fontFamily="@font/arita4_0_m"
-                        android:text="앱정보"
-                        android:textColor="@color/black"
-                        android:textSize="13dp"
-                        android:textStyle="bold" />
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-        </androidx.cardview.widget.CardView>
-    </RelativeLayout>
+        </RelativeLayout>
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
