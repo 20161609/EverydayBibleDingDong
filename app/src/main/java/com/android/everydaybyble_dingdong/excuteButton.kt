@@ -8,6 +8,8 @@ import android.util.Log
 import android.view.Gravity
 import android.view.ViewGroup
 import android.widget.*
+import androidx.core.content.ContextCompat
+import androidx.core.view.marginBottom
 import androidx.core.view.marginTop
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -33,14 +35,17 @@ class excuteButton(
         /*ToastView좌표 및 duration설정*/
         val location = IntArray(2)
         card_box.getLocationOnScreen(location)
-        toastY = screenHeight - location[1] - card_box.height
+        val a = card_box.marginBottom.toInt()
+        Log.e(a.toString(), "HERE HI")
+
+        toastY = a//screenHeight - location[1] - card_box.height
         toastX = location[0]
 
         Log.e(day_list_cover?.marginTop.toString(), "day_list_cover")
 
         val layoutParams = card_box.layoutParams as ViewGroup.MarginLayoutParams
         val marginBottom = layoutParams.bottomMargin
-        Log.e("hojun", marginBottom.toString())
+
         ToastMessage = Toast(activity).apply {
             view = messageNotConnection
             duration = Toast.LENGTH_LONG
@@ -61,15 +66,58 @@ class excuteButton(
             ToastMessage?.view = messageNotConnection
             errorText!!.text = "에러가 발생하였습니다"
             val handler = Handler()
-            handler.postDelayed({ ToastMessage!!.cancel() }, 1800.toLong())
+            handler.postDelayed({ ToastMessage!!.cancel() }, 1000.toLong())
             ToastMessage!!.show().run{ mCountDown.start() }
         }
     }
 
     /*button0000 : 어제 말씀*/
     private fun ButtonSelectingImage(){
+        /*0. 버튼 박스 구성*/
+        dayCardList(activity, context)
+
         /*1, 버튼박스 갱신*/
         boxView?.removeView(card_box)
+
+        val dayCard = dayCard(activity, context)
+        boxView?.addView(dayCard)
+        isDayCard=true
+        for(i in 0..6){
+            dayButtons[i]?.setOnClickListener(){
+                if (current_picture_index!=i) {
+                    if (true){//isNetworkConnected(activity) && ){
+                        current_picture_index = i
+                        for (j in 0..6) {
+                            if (j == current_picture_index) {
+                                dayButtons[j]?.setBackgroundResource(R.drawable.shape_for_circle_button_clicked)
+                                dayButtons[j]?.setTextColor((ContextCompat.getColor(context, R.color.white)))
+                            } else {
+                                dayButtons[j]?.setBackgroundResource(R.drawable.shape_for_circle_button)
+                                dayButtons[j]?.setTextColor((ContextCompat.getColor(context, R.color.black)))
+                            }
+                        }
+                        imageCaching(activity.findViewById(R.id.Current_picture), i)
+                    }
+                    else{
+                        ToastMessage?.view = messageNotConnection
+                        errorText!!.text = "네트워크 연결을 확인해주세요"
+                        val handler = Handler()
+                        handler.postDelayed({ ToastMessage!!.cancel() }, 1000.toLong())
+                        ToastMessage!!.show().run{ mCountDown.start() }
+                        Log.e("log", errorText!!.text.toString())
+                    }
+                }
+            }
+        }
+
+        back?.setOnClickListener(){
+            boxView?.removeView(dayCard)
+            boxView?.addView(card_box)
+            isDayCard=false
+        }
+        return
+
+
         boxView?.addView(day_list_cover)
 
         /*2. 뒤로 가기*/
@@ -83,24 +131,27 @@ class excuteButton(
     /*button0001 : 저장*/
     private fun ButtonSavingImage1(){
         val imageView : ImageView = activity.findViewById(R.id.Current_picture)
+        if(imageView.drawable == null){
+            ToastMessage?.view = messageNotConnection
+            errorText!!.text = "사진이 로드되지 않았습니다"
+            val handler = Handler()
+            handler.postDelayed({ ToastMessage!!.cancel() }, 1000.toLong())
+            ToastMessage!!.show().run{ mCountDown.start() }
+            Log.e("log", errorText!!.text.toString())
+            return
+        }
+
         val save = SaveImageFile(imageView.context)
 
         /*외부저장소 접근 가능여부*/
         if(save.isExternalStorageWritable()){// -> a. 외부저장소 접근 가능
             //a.1. 저장
-            when (androidVersion) {
-                Build.VERSION_CODES.Q// Android version is 10
-                -> save.saveImage_v10(imageView, activity)//
-                Build.VERSION_CODES.R// Android version is 11
-                -> save.saveImage_v11(imageView, activity, "filename")
-                else // 9밑으론 쓰지 마셈ㅗ
-                -> return
-            }
+            save.saveImage_v10(imageView, activity)
 
             //a.2. 저장메시지 ToastView
             ToastMessage?.view = messageSaved
             val handler = Handler()
-            handler.postDelayed({ ToastMessage!!.cancel() }, 1800.toLong())
+            handler.postDelayed({ ToastMessage!!.cancel() }, 1000.toLong())
             ToastMessage!!.show().run{
                 mCountDown.start()
                 v_animation?.playAnimation()
@@ -111,7 +162,7 @@ class excuteButton(
             ToastMessage?.view = messageNotConnection
             errorText!!.text = "앱 설정에서 앨범 접근을 허용해주세요"
             val handler = Handler()
-            handler.postDelayed({ ToastMessage!!.cancel() }, 1800.toLong())
+            handler.postDelayed({ ToastMessage!!.cancel() }, 1000.toLong())
             ToastMessage!!.show().run{ mCountDown.start() }
             Log.e("log", errorText!!.text.toString())
             Log.e("Save", "Fail")
@@ -121,10 +172,7 @@ class excuteButton(
     /*button0002 : 공유*/
     private fun ButtonSharingImage(){
         val imageView: ImageView = activity.findViewById(R.id.Current_picture)
-        when(androidVersion){
-            Build.VERSION_CODES.Q -> shareImage_v11(imageView, activity)
-            Build.VERSION_CODES.R -> shareImage_v11(imageView, activity)
-        }
+        shareImage_v11(imageView, activity)
     }
 
     /*button0003 : 앱정보*/

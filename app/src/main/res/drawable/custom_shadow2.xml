@@ -5,13 +5,9 @@
     <item> <shape> <padding android:top="0dp" android:right="1.7dp" android:bottom="1.7dp" android:left="0dp" /> <corners android:radius="13dp" /> <solid android:color="#dddddddd" /> </shape> </item>
     <item> <shape> <padding android:top="0dp" android:right="1.5dp" android:bottom="1.5dp" android:left="0dp" /> <corners android:radius="13dp" /> <solid android:color="#cccccccc" /> </shape> </item>
     <item> <shape> <padding android:top="0dp" android:right="1.3dp" android:bottom="1.3dp" android:left="0dp" /> <corners android:radius="13dp" /> <solid android:color="#bbbbbbbb" /> </shape> </item>
-    <item> <shape> <padding android:top="0dp" android:right="1.1dp" android:bottom="1.1dp" android:left="0dp" /> <corners android:radius="13dp" /> <solid android:color="#aaaaaaaa" /> </shape> </item>
-<!--
-    <item> <shape> <padding android:top="0dp" android:right="0.9dp" android:bottom="0.9dp" android:left="0dp" /> <corners android:radius="13dp" /> <solid android:color="#99999999" /> </shape> </item>
-    <item> <shape> <padding android:top="0dp" android:right="0.7dp" android:bottom="0.7dp" android:left="0dp" /> <corners android:radius="13dp" /> <solid android:color="#88888888" /> </shape> </item>
--->
+    <item> <shape> <padding android:top="0dp" android:right="1.1dp" android:bottom="1.1dp" android:left="0dp" /> <corners android:radius="13dp" /> <solid android:color="#abcdefff" /> </shape> </item>
 
     <!-- Background -->
 
-    <item> <shape> <solid android:color="@color/gray" /> <corners android:radius="13dp" /> </shape> </item>
+    <item> <shape> <solid android:color="@android:color/transparent" /> <corners android:radius="13dp" /> </shape> </item>
 </layer-list>

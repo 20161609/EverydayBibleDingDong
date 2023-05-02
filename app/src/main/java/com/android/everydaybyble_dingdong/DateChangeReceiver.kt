@@ -11,7 +11,6 @@ class DateChangeReceiver(
 
     override fun onReceive(context: Context, intent: Intent) {
         if (intent.action == Intent.ACTION_DATE_CHANGED) {
-            Log.e("가자","ㅆ")
             initToday(mainActivity,mainContext)
         }
     }

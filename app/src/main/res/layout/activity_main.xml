@@ -43,18 +43,22 @@
 
                 <androidx.cardview.widget.CardView
                     style="?android:attr/borderlessButtonStyle"
-                    android:layout_width="332.5dp"
-                    android:layout_height="332.5dp"
+                    android:layout_width="340dp"
+                    android:layout_height="340dp"
                     android:layout_marginTop="15dp"
-                    app:cardCornerRadius="15dp">
+                    app:cardCornerRadius="13dp">
 
                     <RelativeLayout
                         android:id="@+id/imageBox"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
 <!--
+-->
+
+<!--
                         app:lottie_rawRes="@raw/lottie_loading"
 -->
+
                         <com.airbnb.lottie.LottieAnimationView
                             android:id="@+id/o_animation"
                             android:layout_centerInParent="true"
@@ -64,9 +68,10 @@
                             app:lottie_loop="true"/>
 
                         <ImageView
+                            android:src="@drawable/firstcard"
                             android:id="@+id/Current_picture"
-                            android:layout_width="332.5dp"
-                            android:layout_height="332.5dp"
+                            android:layout_width="340dp"
+                            android:layout_height="340dp"
                             android:layout_centerInParent="true" />
                     </RelativeLayout>
                 </androidx.cardview.widget.CardView>
@@ -78,16 +83,27 @@
             android:id="@+id/boxView"
             android:layout_weight="4"
             android:background="@color/white"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <LinearLayout
+                android:layout_marginBottom="30dp"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:translationX="9dp"
+                android:translationY="9dp"
+                android:layout_width="340dp"
+                android:layout_height="113dp"
+                android:background="@drawable/custom_shadow3"/>
+
+            <LinearLayout
+                android:layout_centerHorizontal="true"
                 android:id="@+id/button_box"
                 android:layout_alignParentBottom="true"
                 android:layout_width="340dp"
                 android:layout_height="113dp"
                 android:layout_marginBottom="30dp"
-                android:background="@drawable/custom_shadow2"
+                android:background="@drawable/custom_card"
                 android:gravity="center"
                 android:orientation="horizontal">
 
@@ -150,8 +166,6 @@
                     android:textSize="13dp"
                     android:textStyle="bold" />
             </LinearLayout>
-
         </RelativeLayout>
     </LinearLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

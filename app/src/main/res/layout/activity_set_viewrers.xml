@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".set_Viewrers">
 
-
     <RelativeLayout
         android:id="@+id/set_viewers"
         android:orientation="vertical"
@@ -133,6 +132,7 @@
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_marginStart="18dp"
+                    android:gravity="center"
                     android:background="@drawable/shape_for_circle_button"
                     android:fontFamily="@font/arita4_0_m"
                     android:text="00"

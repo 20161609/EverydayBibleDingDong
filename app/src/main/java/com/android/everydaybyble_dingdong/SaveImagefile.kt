@@ -21,7 +21,6 @@ import java.io.OutputStream
 import java.time.LocalDateTime
 import java.util.*
 
-
 class SaveImageFile(context: Context) {
     public var filename : String
     init{
@@ -41,87 +40,27 @@ class SaveImageFile(context: Context) {
     }
     private fun getBitmapFromView(view: ImageView): Bitmap {
         return Bitmap.createBitmap(view.width, view.height,Bitmap.Config.ARGB_8888).apply {
-            Canvas(this).apply {
-                view.draw(this)
-            }
+            Canvas(this).apply { view.draw(this) }
         }
     }
 
     fun saveImage_v10(itemImage: ImageView, activity: Activity) {
-        Log.e("saveImage_v10", "Excuted")
         val imageFromView = getBitmapFromView(itemImage)
         val resolver = activity.contentResolver
         val contentValues = ContentValues().apply {
             put(MediaStore.Images.Media.DISPLAY_NAME, filename)
             put(MediaStore.Images.Media.MIME_TYPE, "image/jpeg")
+            put(MediaStore.Images.Media.RELATIVE_PATH, "Pictures/딩동 말씀")
         }
 
         val imageUri = resolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues)
-
         imageUri?.let {
             resolver.openOutputStream(it).use { outputStream ->
                 imageFromView.compress(Bitmap.CompressFormat.JPEG, 100, outputStream)
             }
-
             Log.e("Save", "success")
         } ?: run {
             Toast.makeText(activity, "Unable to save image", Toast.LENGTH_SHORT).show()
-        }
-    }
-
-    @RequiresApi(Build.VERSION_CODES.O)
-    fun saveImage_v(itemImage: ImageView, activity: Activity) {
-        val imageFromView = getBitmapFromView(itemImage)
-        val imageDir = File("${activity.getExternalFilesDir(Environment.DIRECTORY_PICTURES)}/ChatOut")
-        imageDir.mkdirs()
-        val imageFile = File("${imageDir.absolutePath}/$filename.jpg")
-
-        if (!imageFile.exists()) {
-            val contentResolver = ContentValues().apply {
-                put(MediaStore.Images.Media.DATE_ADDED, System.currentTimeMillis())
-                put(MediaStore.Images.Media.MIME_TYPE, "image/jpeg")
-                put(MediaStore.Images.Media.DATA, imageFile.absolutePath)
-            }
-
-            activity.contentResolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentResolver)?.let { uri ->
-                activity.contentResolver.openOutputStream(uri)?.let { outputStream ->
-                    imageFromView.compress(Bitmap.CompressFormat.JPEG, 100, outputStream)
-                    outputStream.close()
-                }
-            }
-
-            Log.e("Save", "success")
-        } else {
-            Toast.makeText(activity, "Already saved", Toast.LENGTH_SHORT).show()
-        }
-    }
-
-
-    public fun saveImage_v11(itemImage: ImageView, activity: Activity, filename : String) {
-        Log.e("saveImage_v11", "Excuted")
-        val imageFromView = getBitmapFromView(itemImage)
-
-        ByteArrayOutputStream().apply {
-            imageFromView.compress(Bitmap.CompressFormat.JPEG, 100, this)
-        }
-
-        val imageFile =  File("${activity.getExternalFilesDir(Environment.DIRECTORY_PICTURES)}/ChatOut/$filename.jpg/")
-        if (!imageFile.exists()) {
-
-            val contentResolver = ContentValues().apply {
-                put(MediaStore.Images.Media.DATE_ADDED, System.currentTimeMillis())
-                put(MediaStore.Images.Media.MIME_TYPE, "image/jpeg")
-                put(MediaStore.Images.Media.DATA, imageFile.absolutePath)
-            }
-
-            activity.contentResolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentResolver).apply {
-                imageFromView.compress(Bitmap.CompressFormat.JPEG, 100, activity.contentResolver.openOutputStream(this!!))
-            }
-
-            Log.e("Save", "success")
-        }
-        else{
-            Toast.makeText(activity, "Already saved", Toast.LENGTH_SHORT).show()
         }
     }
 

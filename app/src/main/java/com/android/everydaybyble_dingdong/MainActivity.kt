@@ -17,10 +17,12 @@ import androidx.appcompat.widget.AppCompatButton
 val androidVersion = Build.VERSION.SDK_INT
 
 var buttonBlocked : Boolean = false //버튼 클릭 가능여부
-var current_picture_index : Int = 6 // 현재 출력되어있는 말씀카드 인덱스
+var current_picture_index : Int = 6// 현재 출력되어있는 말씀카드 인덱스
 var daySelection : Array<Today> = arrayOf() // 7일간의 데이터 array
 var dayButtons : Array<AppCompatButton?> = arrayOf()
 var dayClicked : Int = -1 //클릭된 date번호
+var isDayCard : Boolean = false
+
 var errorText : TextView? = null // 출력할 error Message
 
 var activity_sv : View? = null
@@ -28,10 +30,10 @@ var set_viewers : RelativeLayout? = null
 
 var ToastMessage: Toast? = null // 공통된 toastMessage
 
-var messageSaved : androidx.cardview.widget.CardView?? = null
+var messageSaved : androidx.cardview.widget.CardView? = null
 var v_animation : com.airbnb.lottie.LottieAnimationView? = null
 var o_animation : com.airbnb.lottie.LottieAnimationView? = null
-
+var arrDayButton : Array<AppCompatButton> = arrayOf()
 var messageNotConnection : androidx.cardview.widget.CardView? = null
 
 var day_list_cover : LinearLayout? = null
@@ -76,11 +78,11 @@ class MainActivity : AppCompatActivity() {
         set_viewers?.removeView(day_list_cover)
 
         /*2. 버튼 기능 실행*/
-        val ExcuteButton = excuteButton(this, this, screenHeight)
+        val excuteButton = excuteButton(this, this, screenHeight)
         val buttonId : Array<Int> = arrayOf(R.id.button0, R.id.button1, R.id.button2, R.id.button3)
         for(click in 0..3) {
             val button : Button = findViewById<Button?>(buttonId[click])
-            button.setOnClickListener() {ExcuteButton.run(click)}
+            button.setOnClickListener() {excuteButton.run(click)}
         }
 
         /*3. 날짜 갱신 (24시 정각)*/
@@ -89,12 +91,24 @@ class MainActivity : AppCompatActivity() {
         this.registerReceiver(dateChangeReceiver, intentFilter)
     }
 
+    override fun onResume(){
+        super.onResume()
+        Log.e("onResume", current_picture_index.toString())
+    }
     override fun onPause() {
         super.onPause()
         ToastMessage?.cancel()
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+    }
+    override fun onBackPressed() {
+        if(isDayCard)
+            back?.callOnClick()
+    }
 }
+
 public fun initToday(activity: AppCompatActivity, context: Context){
     /*1. 날짜 갱신*/
     current_picture_index = 6

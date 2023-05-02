@@ -18,7 +18,7 @@ fun imageCaching(imageView : ImageView, pictureIndex : Int){
     islandRef.downloadUrl.addOnSuccessListener { uri ->
         Glide.with(imageView.context)
             .load(uri)
-            .diskCacheStrategy(DiskCacheStrategy.NONE)
+            .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
             .centerCrop()
             .into(imageView).run {
                 imageBox?.removeView(o_animation)
